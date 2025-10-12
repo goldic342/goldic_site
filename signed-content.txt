@@ -1,0 +1,15 @@
+Hello, I'm Goldic
+
+Fullstack Developer specializing in React and FastAPI
+
+GitHub - https://github.com/goldic342
+Telegram - https://t.me/oAT6q1x
+Email - contact@goldic.xyz
+
+Also find me on:
+LeetCode - https://leetcode.com/u/goldicst/
+
+---
+
+GPG Public Key - https://goldic.xyz/publickey.asc
+Site Signed Content - https://goldic.xyz/signed-content.txt
