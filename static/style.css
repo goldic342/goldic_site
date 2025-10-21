@@ -113,11 +113,11 @@ body > footer > div {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.7rem;
 }
 
 .no-ai-icon {
   width: 18px;
   height: 18px;
   filter: grayscale();
-  margin-right: 1rem;
 }
