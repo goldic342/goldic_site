@@ -42,7 +42,16 @@ hr {
   border-top: 1px solid #ccc;
 }
 
-.caption {
+ul {
+  list-style-type: none;
+}
+
+ul > li::before {
+  content: "/>";
+  color: gray;
+}
+
+body > header > h3 {
   color: gray;
   font-size: 1jpx;
   font-weight: normal;
@@ -50,52 +59,6 @@ hr {
 
 body > header {
   margin-bottom: 3rem;
-}
-
-h2 {
-  font-weight: bold;
-  font-size: 24px;
-}
-
-section {
-  margin-bottom: 2rem;
-}
-
-.section_description {
-  margin-bottom: 0.8rem;
-}
-
-section > ul {
-  list-style-type: none;
-}
-
-section > ul > li::before {
-  content: "/>";
-  color: gray;
-}
-
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.project {
-  background-color: #e8e8e8;
-  padding: 10px;
-  border-left: 3px solid #ccc;
-}
-
-.project > header {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.project_tags > span {
-  padding: 2px;
-  font-size: 14px;
-  color: #7575bd;
 }
 
 body > footer {
@@ -107,6 +70,7 @@ body > footer {
   flex-direction: column;
   color: grey;
   padding: 20px;
+  gap: 12px;
 }
 
 body > footer > div {

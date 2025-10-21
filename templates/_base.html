@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css" />
+
+    {% block head %} {% endblock %}
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; style-src 'self'; img-src 'self'; object-src 'none';"
@@ -28,7 +30,7 @@
       <div>
         <img
           title="No AI-generated content."
-          src="static/images/no-ai-icon-01.png"
+          src="../static/images/no-ai-icon-01.png"
           alt="No AI"
           class="no-ai-icon"
         />
@@ -41,8 +43,8 @@
           href="https://github.com/goldic342/goldic_site"
           >source</a
         >
-        <a href="static/data/publickey.asc">PGP key</a>
-        <a href="static/data/signed-content.txt.asc">Signed content</a>
+        <a href="../static/data/publickey.asc">PGP key</a>
+        <a href="../static/data/signed-content.txt.asc">Signed content</a>
       </div>
     </footer>
   </body>

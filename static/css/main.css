@@ -1,0 +1,36 @@
+h2 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+.section_description {
+  margin-bottom: 0.8rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.project {
+  background-color: #e8e8e8;
+  padding: 10px;
+  border-left: 3px solid #ccc;
+}
+
+.project > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.project_tags > span {
+  padding: 2px;
+  font-size: 14px;
+  color: #7575bd;
+}
