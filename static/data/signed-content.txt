@@ -1,15 +1,34 @@
-Hello, I'm Goldic
+Goldic
 
-Fullstack Developer specializing in React and FastAPI
+Fullstack web developer. Linux enthusiast.
 
-GitHub - https://github.com/goldic342
+Contacts
+
 Telegram - https://t.me/oAT6q1x
 Email - contact@goldic.xyz
 
-Also find me on:
-LeetCode - https://leetcode.com/u/goldicst/
 
----
+Projects
+Keep in mind that most publicly available projects don’t reflect my current skill level. I’ve been working on closed-source projects over the past year.
 
-GPG Public Key - https://goldic.xyz/publickey.asc
-Site Signed Content - https://goldic.xyz/signed-content.txt
+Urelocate Fullstack / React / FastAPI
+Web app that matches users with relocation jobs by country and preferences. Provides a personalized score estimating relocation likelihood. Built during a hackathon.
+source - https://github.com/goldic342/urelocate-v2 | demo - https://urelocate.goldic.xyz/
+
+Viniqufy PostgreSQL / FastAPI
+Web app that analyzes your Spotify playlist to determine its uniqueness.
+source - https://github.com/goldic342/viniqufy
+
+
+Tradingone Private / Docker / MongoDB
+Web app with trading dashboard and landing page. Integrated with Bybit, KuCoin, and Binance APIs. Telegram bot for trade notifications and remote commands.
+live - https://tradingone.pro/
+
+
+Self-Hosted services
+SearXNG - no logs, no tracing. https://search.goldic.xyz/
+
+GPG 
+
+GPG Public Key - https://goldic.xyz/static/data/publickey.asc
+Site Signed Content - https://goldic.xyz/static/data/signed-content.txt.asc
