@@ -13,7 +13,7 @@ Keep in mind that most publicly available projects don’t reflect my current sk
 
 Urelocate Fullstack / React / FastAPI
 Web app that matches users with relocation jobs by country and preferences. Provides a personalized score estimating relocation likelihood. Built during a hackathon.
-source - https://github.com/goldic342/urelocate-v2 | demo - https://urelocate.goldic.xyz/
+source - https://github.com/goldic342/urelocate-v2
 
 Viniqufy PostgreSQL / FastAPI
 Web app that analyzes your Spotify playlist to determine its uniqueness.
