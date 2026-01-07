@@ -2,7 +2,7 @@
 
 ![photo](images/demo.png)
 
-My personal lightweight website built with **StaticJinja**.  
+My personal lightweight website built with StaticJinja.  
 Showcases a few projects and important links.  
 Works entirely without JavaScript.
 
@@ -25,3 +25,8 @@ Run
 ```bash
 docker run -p 3001:3001 goldic_site
 ```
+
+### Docker compose
+
+Uses an external Docker network by default.
+For `localhost` deployment, disable networks and enable port mapping.

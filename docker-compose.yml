@@ -1,13 +1,15 @@
-# Only for faster deploys
-
 version: "3.8"
 
 services:
-  app:
+  goldic_site:
     build: .
-    container_name: goldic_site
-    ports:
-      - "127.0.0.1:3001:3001" # expose only to localhost
-    expose:
-      - "3001"
     restart: unless-stopped
+    container_name: goldic_site
+    networks: [infra]
+# Expose ports for localhost deploy
+#    ports:
+#      - "127.0.0.1:3001:3001"
+
+networks:
+  infra:
+    external: true
