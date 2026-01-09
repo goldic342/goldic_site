@@ -1,6 +1,7 @@
 h2 {
   font-weight: bold;
   font-size: 24px;
+  color: var(--text-muted);
 }
 
 section {
@@ -18,9 +19,9 @@ section {
 }
 
 .project {
-  background-color: #e8e8e8;
+  background-color: var(--highlight);
   padding: 10px;
-  border-left: 3px solid #ccc;
+  border-left: 3px solid var(--border);
 }
 
 .project > header {
@@ -32,5 +33,11 @@ section {
 .project_tags > span {
   padding: 2px;
   font-size: 14px;
-  color: #7575bd;
+  color: var(--highlight-2);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
