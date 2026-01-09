@@ -21,7 +21,7 @@ body {
     --background: #181a1b;
     --background-main: #1e2021;
     --text: #d3cfc9;
-    --text-muted: #c8c3bc;
+    --text-muted: #988f81;
     --highlight: #25282a;
     --highlight-2: #657899;
     --border: #444;
@@ -88,9 +88,9 @@ ul > li::before {
 }
 
 body > header > h3 {
-  color: gray;
   font-size: 1jpx;
   font-weight: normal;
+  color: var(--text-muted);
 }
 
 body > header {
