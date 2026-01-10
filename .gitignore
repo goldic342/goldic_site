@@ -2,6 +2,7 @@ venv/
 build/
 index.html
 data/
+templates/posts/
 
 
 # Byte-compiled / optimized / DLL files

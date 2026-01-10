@@ -1,0 +1,25 @@
+{% extends "_base.html" %} 
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="static/css/blog.css">
+{% endblock %}
+
+{% block title %} About - goldic.xyz{% endblock %}
+
+{% block content %}
+
+
+<section class='posts'>
+  <ul>
+  {% for post in posts %}
+    <li>
+      <p>{{post.datetime }}</p>
+      <p> - </p>
+      <a href="{{ post.url }}"><b>{{ post.name }}</b></a>
+
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}
