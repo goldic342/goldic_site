@@ -9,18 +9,17 @@
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; style-src 'self'; img-src 'self'; object-src 'none';"
-    />
-    <meta
-      name="description"
-      content="Goldic - Fullstack web developer and Linux enthusiast."
     /> 
     <meta name="author" content="Goldic" />
-    <title>Goldic</title>
+    <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
     <header>
-      <h1>Goldic</h1>
-      <h3 class="caption">Fullstack web developer. Linux enthusiast.</h3>
+      <a href='/' class='logo'><h2>goldic.xyz</h2></a>
+      <nav>
+        <a href='/p'>Blog</a>
+        <a href='/'>About</a>
+      </nav>
     </header>
 
     <main>{% block content %}{% endblock %}</main>

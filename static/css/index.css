@@ -36,13 +36,9 @@ body {
   }
 }
 
-html {
-  background-color: var(--background);
-}
-
 body {
   font-family: "Courier New", monospace;
-  background-color: var(--background-main);
+  background-color: var(--background);
   color: var(--text);
   line-height: 1.6;
   padding: 20px;
@@ -87,14 +83,44 @@ ul > li::before {
   color: gray;
 }
 
-body > header > h3 {
-  font-size: 1jpx;
-  font-weight: normal;
+body > header {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+}
+
+.logo {
+  text-decoration: none;
   color: var(--text-muted);
 }
 
-body > header {
-  margin-bottom: 3rem;
+.logo > h2 {
+  font-size: 22px;
+}
+
+.logo:hover {
+  background-color: var(--background);
+}
+
+.logo:visited {
+  color: var(--text-muted);
+}
+
+nav > a {
+  text-decoration: none;
+  color: var(--text-muted);
+}
+
+nav > a:visited {
+  color: var(--text-muted);
+}
+
+nav > a:hover {
+  font-weight: 700;
+  background-color: var(--background);
+  color: var(--text-muted);
 }
 
 body > footer {
