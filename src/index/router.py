@@ -15,4 +15,9 @@ async def root(request: Request):
 
 @router.get("/favicon.ico")
 async def favicon():
-    return FileResponse("static/images/favicon.ico")
+    return FileResponse("static/icons/favicon.ico")
+
+
+@router.get("/robots.txt")
+async def robots():
+    return FileResponse("static/data/robots.txt")
