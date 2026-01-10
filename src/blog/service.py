@@ -52,7 +52,7 @@ class BlogService:
             posts.append(
                 {
                     "datetime": datetime.fromtimestamp(dt).strftime("%B %d, %Y"),
-                    "url": f"https://goldic.xyz/b/{generic_name}",
+                    "url": f"/b/{generic_name}",
                     "name": name,
                 }
             )
