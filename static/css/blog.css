@@ -5,6 +5,10 @@
   gap: 0.5rem;
 }
 
+.post {
+  margin-bottom: 0.2rem;
+}
+
 .post a,
 .post p {
   display: inline;
