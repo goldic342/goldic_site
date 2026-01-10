@@ -34,9 +34,3 @@ section {
   font-size: 14px;
   color: var(--highlight-2);
 }
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}

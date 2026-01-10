@@ -1,0 +1,12 @@
+.info {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.post a,
+.post p {
+  display: inline;
+  text-decoration: none;
+}
