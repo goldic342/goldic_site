@@ -88,7 +88,7 @@ body > header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .logo {
@@ -97,7 +97,7 @@ body > header {
 }
 
 .logo > h2 {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .logo:hover {
