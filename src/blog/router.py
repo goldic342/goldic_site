@@ -40,6 +40,7 @@ async def p(post_name: str, request: Request):
             "markdown_mark",
             "markdown_del_ins",
             "extra",
+            "toc",
         ],
     )
     pygments_css = HtmlFormatter().get_style_defs()
