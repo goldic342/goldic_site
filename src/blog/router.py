@@ -43,7 +43,8 @@ async def p(post_name: str, request: Request):
             "toc",
         ],
     )
-    pygments_css = HtmlFormatter().get_style_defs()
+    pygments_light_css = HtmlFormatter(style="solarized-light").get_style_defs()
+    pygments_dark_css = HtmlFormatter(style="github-dark").get_style_defs()
 
     return templates.TemplateResponse(
         "post.html",
@@ -51,7 +52,8 @@ async def p(post_name: str, request: Request):
             "request": request,
             "title": meta.get("name"),
             "content": html_content,
-            "pygment_css": pygments_css,
+            "pygments_light_css": pygments_light_css,
+            "pygments_dark_css": pygments_dark_css,
             "publish_date": datetime.fromtimestamp(meta.get("datetime", 0)).strftime(
                 "%B %d %Y"
             ),

@@ -3,7 +3,12 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="/static/css/post.css" />
 <style>
-{{ pygment_css }}
+
+{{ pygments_light_css }}
+
+@media (prefers-color-scheme: dark) {
+  {{ pygments_dark_css }}
+}
 </style>
 {% endblock %} 
 
