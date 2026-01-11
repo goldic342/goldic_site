@@ -43,7 +43,9 @@ class AdminService:
 
         expiry = data.get("expiry", 0)
         try:
-            is_expired = datetime.fromtimestamp(expiry) < datetime.now(timezone.utc)
+            is_expired = datetime.fromtimestamp(expiry, tz=timezone.utc) < datetime.now(
+                timezone.utc
+            )
         except (TypeError, ValueError):
             return False
 

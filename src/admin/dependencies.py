@@ -10,7 +10,6 @@ def verify_token(request: Request):
         raise HTTPException(status_code=401, detail="Deniend :(")
 
     if not AdminService().verify_token(token):
-
         raise HTTPException(status_code=401, detail="Deniend :(")
 
     return True
