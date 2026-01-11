@@ -1,7 +1,10 @@
 from fastapi import APIRouter, Request
-from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
-import mistune
+import markdown
+from markdown.extensions.codehilite import CodeHiliteExtension
+from pygments.formatters import HtmlFormatter
+
+from datetime import datetime
 
 from blog.service import BlogService
 
@@ -19,31 +22,37 @@ async def list_p(request: Request):
     )
 
 
-@router.get("/b")
-async def p(request: Request):
-    with open("data/md/abc.md", "r") as f:
-        d = f.read()
+@router.get("/{post_name}")
+async def p(post_name: str, request: Request):
+    meta, text = BlogService().get_post(post_name)
 
-    md = mistune.create_markdown(
-        plugins=[
-            "strikethrough",
-            "footnotes",
-            "table",
-            "url",
-            "task_lists",
-            "def_list",
-            "abbr",
-            "mark",
-            "insert",
-            "superscript",
-            "subscript",
-            "math",
-            "spoiler",
-        ]
+    if not meta or not text:
+        return
+
+    md_text = "".join(text)
+
+    html_content = markdown.markdown(
+        md_text,
+        extensions=[
+            "fenced_code",
+            CodeHiliteExtension(linenums=False, guess_lang=True),
+            "markdown_sub_sup",
+            "markdown_mark",
+            "markdown_del_ins",
+            "extra",
+        ],
     )
-    html_content = md(d)
+    pygments_css = HtmlFormatter().get_style_defs()
 
-    with open("templates/posts/post.html", "w") as f:
-        f.write(str(html_content))
-
-    return FileResponse("templates/posts/post.html", media_type="text/html")
+    return templates.TemplateResponse(
+        "post.html",
+        {
+            "request": request,
+            "title": meta.get("name"),
+            "content": html_content,
+            "pygment_css": pygments_css,
+            "publish_date": datetime.fromtimestamp(meta.get("datetime", 0)).strftime(
+                "%B %d %Y"
+            ),
+        },
+    )

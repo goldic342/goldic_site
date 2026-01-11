@@ -46,7 +46,7 @@ body {
   font-family: "Courier New", monospace;
   background-color: var(--background);
   color: var(--text);
-  line-height: 1.2;
+  line-height: normal;
   padding: 20px;
   padding-top: 40px;
   max-width: 800px;
