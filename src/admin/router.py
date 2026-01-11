@@ -52,25 +52,25 @@ async def admin_login(
 @router.get("/dash")
 async def admin_dash(
     request: Request,
-    media: list[str] | None = Query(None),
+    imgs: list[str] | None = Query(None),
     is_admin=Depends(verify_token),
 ):
-    media_proc = [
-        {"name": os.path.basename(urlparse(m).path), "url": m} for m in media or []
+    imgs_proc = [
+        {"name": os.path.basename(urlparse(m).path), "url": m} for m in imgs or []
     ]
 
     return templates.TemplateResponse(
-        "dash.html", {"request": request, "media": media_proc}
+        "dash.html", {"request": request, "imgs": imgs_proc}
     )
 
 
-@router.post("/upmedia")
+@router.post("/upimgs")
 async def handle_upload(
     files: list[UploadFile] = File(...), is_admin=Depends(verify_token)
 ):
 
     urls = await AdminService().save_files(files)
-    redirect_url = "/a/dash?media=" + "&media=".join(quote_plus(url) for url in urls)
+    redirect_url = "/a/dash?imgs=" + "&imgs=".join(quote_plus(url) for url in urls)
 
     response = RedirectResponse(redirect_url, status_code=302)
 

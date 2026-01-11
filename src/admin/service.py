@@ -71,6 +71,21 @@ class AdminService:
 
         return self.__create_token()
 
+    def __check_file(self, file: UploadFile) -> bool:
+        if (file.size or 0) > settings.MAX_FILESIZE:
+            raise ValueError("Too much")
+
+        if file.size == 0:
+            return False
+
+        if not file.content_type:
+            raise ValueError("Can't do that")
+
+        if not file.content_type.startswith("image/"):
+            raise ValueError("Only images")
+
+        return True
+
     async def save_files(self, files: list[UploadFile]) -> list[str]:
         if len(files) > settings.MAX_FILES:
             raise ValueError("Too much")
@@ -79,15 +94,13 @@ class AdminService:
         media_dir = Path(settings.DATA_DIR) / "media"
 
         for file in files:
-            if (file.size or 0) > settings.MAX_FILESIZE:
-                raise ValueError("Too much")
-
-            if file.size == 0:
+            if not self.__check_file(file):
                 continue
 
             filename = (
                 os.path.basename(file.filename or "") or f"file_{os.urandom(10).hex()}"
             )
+
             filename = urllib.parse.quote(filename)
 
             f_path = media_dir / filename

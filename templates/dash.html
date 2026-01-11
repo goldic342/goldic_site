@@ -13,13 +13,13 @@
 </section>
 
 <section class='upload'>
-  <form action='/a/upmedia' method='POST' enctype="multipart/form-data">
+  <form action='/a/upimgs' method='POST' enctype="multipart/form-data">
     <p>Make sure to have descriptive filename for the image or video.</p>
     <input type='file' name='files' accept='image/*' multiple/>
     <button type='submit'>Upload</button>
   </form>
   <div class='uploaded'>
-    {% for m in media %}
+    {% for m in imgs %}
       <a href="{{ m.url }}">{{ m.name }}</a>
     {% endfor %}
   </div>
