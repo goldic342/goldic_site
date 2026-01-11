@@ -9,6 +9,11 @@ class Settings(BaseSettings):
 
     TOKEN_SECRET: str
 
+    DATA_DIR: str = "./data"
+
+    MAX_FILESIZE: int = 10 * 1024 * 1024
+    MAX_FILES: int = 5
+
     model_config = SettingsConfigDict(
         env_file=path.join(path.dirname(path.abspath(__file__)), "..", ".env")
     )

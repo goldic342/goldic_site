@@ -1,6 +1,11 @@
 import hmac
+import urllib
+import os
 import json
 import hashlib
+from pathlib import Path
+
+from fastapi import UploadFile
 from config import settings
 from datetime import datetime, timedelta, timezone
 
@@ -65,3 +70,30 @@ class AdminService:
             raise ValueError("Nuh uh")
 
         return self.__create_token()
+
+    async def save_files(self, files: list[UploadFile]) -> list[str]:
+        if len(files) > settings.MAX_FILES:
+            raise ValueError("Too much")
+
+        urls = []
+        media_dir = Path(settings.DATA_DIR) / "media"
+
+        for file in files:
+            if (file.size or 0) > settings.MAX_FILESIZE:
+                raise ValueError("Too much")
+
+            if file.size == 0:
+                continue
+
+            filename = (
+                os.path.basename(file.filename or "") or f"file_{os.urandom(10).hex()}"
+            )
+            filename = urllib.parse.quote(filename)
+
+            f_path = media_dir / filename
+
+            with open(f_path, "wb") as f:
+                f.write(await file.read())
+            urls.append(f"/up/media/{filename}")
+
+        return urls

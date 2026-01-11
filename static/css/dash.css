@@ -1,0 +1,28 @@
+.upload {
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 50%;
+}
+
+.uploaded {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+@media (max-width: 720px) {
+  .upload {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .upload > form {
+    max-width: 100%;
+  }
+}

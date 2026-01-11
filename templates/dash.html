@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+
+{% block head%}
+<link rel='stylesheet' type='text/css' href='/static/css/dash.css'/>
+{% endblock %}
+
+{% block title %} Admin - goldic.xyz {% endblock %}
+
+{% block content %}
+
+<section class='info'>
+  <h1>Admin</h1>
+</section>
+
+<section class='upload'>
+  <form action='/a/upmedia' method='POST' enctype="multipart/form-data">
+    <p>Make sure to have descriptive filename for the image or video.</p>
+    <input type='file' name='files' accept='image/*' multiple/>
+    <button type='submit'>Upload</button>
+  </form>
+  <div class='uploaded'>
+    {% for m in media %}
+      <a href="{{ m.url }}">{{ m.name }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
