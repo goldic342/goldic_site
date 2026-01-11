@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/css/admin.css"/>
+{% endblock %}
+
+{% block title %}Admin - goldic.xyz{% endblock %}
+
+{% block content %}
+
+<section class='info'>
+  <h1>Admin</h1>
+</section>
+
+<form class='login-form' action='/a/login' method='POST'>
+  <input placeholder='Username' name='username' />
+  <input type='password' placeholder='Password' name='password'/>
+  <button type='submit'>Login</button>
+</form>
+
+
+<p>Go straight to <a href='/a/dash'>dashboard</a></p>
+
+{% endblock %}

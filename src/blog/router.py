@@ -27,7 +27,7 @@ async def p(post_name: str, request: Request):
     meta, text = BlogService().get_post(post_name)
 
     if not meta or not text:
-        return
+        return  # TODO: Not found
 
     md_text = "".join(text)
 
