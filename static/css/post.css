@@ -6,7 +6,6 @@
 
 .info > div > a {
   color: var(--text-muted);
-  font-weight: bold;
 }
 
 article h1,

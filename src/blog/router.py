@@ -46,6 +46,7 @@ async def p(post_name: str, request: Request):
     pygments_light_css = HtmlFormatter(style="solarized-light").get_style_defs()
     pygments_dark_css = HtmlFormatter(style="github-dark").get_style_defs()
 
+    print(meta)
     return templates.TemplateResponse(
         "post.html",
         {
