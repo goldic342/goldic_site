@@ -80,11 +80,11 @@ a.unstyled {
   text-decoration: none;
 }
 
-a:visited {
+a.unstyled:visited {
   color: var(--text);
 }
 
-a:hover {
+a.unstyled:hover {
   background-color: transparent;
 }
 
