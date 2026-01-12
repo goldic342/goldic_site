@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+
+{% block title %}Error!{% endblock %} 
+
+{% block content %}
+
+<section class='info'>
+  <h1>{{ error }}</h1>
+  <p>{{ detail if detail else "Hmmmm... Let me think about that..."}}</p>
+</section>
+
+{% endblock %}

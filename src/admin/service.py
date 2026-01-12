@@ -9,6 +9,8 @@ from fastapi import UploadFile
 from config import settings
 from datetime import datetime, timedelta, timezone
 
+from exceptions import DetailedError
+
 
 class AdminService:
     def __hash_password(self, password: str, salt: bytes, iter: int = 100_000) -> str:
@@ -61,34 +63,34 @@ class AdminService:
 
     def login(self, username: str, password: str) -> str:
         if not hmac.compare_digest(username, settings.ADMIN_USERNAME):
-            raise ValueError("Nuh uh")
+            raise DetailedError("Wrong guess!")
 
         if not hmac.compare_digest(
             self.__hash_password(password, settings.ADMIN_PASSWORD_SALT.encode()),
             settings.ADMIN_PASSWORD_HASH,
         ):
-            raise ValueError("Nuh uh")
+            raise DetailedError("Wrong guess!")
 
         return self.__create_token()
 
     def __check_file(self, file: UploadFile) -> bool:
         if (file.size or 0) > settings.MAX_FILESIZE:
-            raise ValueError("Too much")
+            raise DetailedError("Too much", "I can't handle this!")
 
         if file.size == 0:
             return False
 
         if not file.content_type:
-            raise ValueError("Can't do that")
+            raise DetailedError("Can't do that!", "I don't like files like that.")
 
         if not file.content_type.startswith("image/"):
-            raise ValueError("Only images")
+            raise DetailedError("Can't do that!", "I don't like files like that.")
 
         return True
 
     async def save_files(self, files: list[UploadFile]) -> list[str]:
         if len(files) > settings.MAX_FILES:
-            raise ValueError("Too much")
+            raise DetailedError("Too much", "I can't handle this!")
 
         urls = []
         media_dir = Path(settings.DATA_DIR) / "media"
