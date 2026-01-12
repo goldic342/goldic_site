@@ -12,6 +12,8 @@
   <h1>Admin</h1>
 </section>
 
+<h2>Images</h2>
+
 <section class='upload'>
   <form action='/a/upimgs' method='POST' enctype="multipart/form-data">
     <p>Make sure to have descriptive filename for the image.</p>
@@ -22,6 +24,19 @@
     {% for m in imgs %}
       <a href="{{ m.url }}">{{ m.name }}</a>
     {% endfor %}
+  </div>
+</section>
+
+<h2>MD files</h2>
+
+<section class='upload'>
+  <form action='/a/upmd' method='POST' enctype="multipart/form-data">
+    <p>Make sure to include all meta tags: name, generic_name, publish_date (timestamp) and description.</p>
+    <input type='file' name='file' accept='text/markdown'/>
+    <button type='submit'>Upload</button>
+  </form>
+  <div class='uploaded'>
+    <a href="{{ md.url }}">{{ md.name }}</a>
   </div>
 </section>
 

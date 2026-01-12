@@ -54,8 +54,8 @@ async def p(post_name: str, request: Request):
             "content": html_content,
             "pygments_light_css": pygments_light_css,
             "pygments_dark_css": pygments_dark_css,
-            "publish_date": datetime.fromtimestamp(meta.get("datetime", 0)).strftime(
-                "%B %d %Y"
-            ),
+            "publish_date": datetime.fromtimestamp(
+                meta.get("publish_date", 0)
+            ).strftime("%B %d %Y"),
         },
     )
