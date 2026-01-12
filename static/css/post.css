@@ -1,5 +1,12 @@
-.info > h4 {
+.info > div {
   color: var(--text-muted);
+  display: flex;
+  gap: 1rem;
+}
+
+.info > div > a {
+  color: var(--text-muted);
+  font-weight: bold;
 }
 
 article h1,

@@ -51,6 +51,7 @@ async def p(post_name: str, request: Request):
         {
             "request": request,
             "title": meta.get("name"),
+            "generic_name": meta.get("generic_name"),
             "content": html_content,
             "pygments_light_css": pygments_light_css,
             "pygments_dark_css": pygments_dark_css,

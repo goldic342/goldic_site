@@ -101,7 +101,7 @@ class AdminService:
 
     async def __check_md(
         self, file: UploadFile
-    ) -> tuple[list[str], bytes] | tuple[None, None]:
+    ) -> tuple[list[str], bytes, dict] | tuple[None, None, None]:
         data = bytearray()
 
         while True:
@@ -129,7 +129,7 @@ class AdminService:
                 "Ensure meta: name, generic_name, publish_date, description",
             )
 
-        return lines, bytes(data)
+        return lines, bytes(data), meta
 
     async def save_files(
         self,
@@ -154,30 +154,30 @@ class AdminService:
             if not self.__check_file(file, file_type):
                 continue
 
-            filename = os.path.basename(file.filename or "")
-            if not filename:
-                filename = f"file_{os.urandom(10).hex()}.md"
-
-            filename = self.__normalize_filename(filename)
-            f_path = base_dir / filename
-
-            if f_path.exists():
-                raise DetailedError(
-                    "Too redundant!", "Why would you upload this again??"
-                )
-
             if file_type == "md":
-                lines, raw = await self.__check_md(file)
-
-                if not lines or not raw:
+                lines, raw, meta = await self.__check_md(file)
+                if not lines or not raw or not meta:
                     continue
 
-                with open(f_path, "wb") as f:
-                    f.write(raw)
+                generic = meta["generic_name"].strip()
+
+                filename = self.__normalize_filename(generic) + ".md"
+                data = raw
 
             else:
-                with open(f_path, "wb") as f:
-                    f.write(await file.read())
+                name = os.path.basename(file.filename or "")
+                if not name:
+                    name = f"file_{os.urandom(10).hex()}"
+
+                filename = self.__normalize_filename(name)
+                data = await file.read()
+
+            f_path = base_dir / filename
+            if f_path.exists():
+                raise DetailedError("Too redundant!", "File already exists")
+
+            with open(f_path, "wb") as f:
+                f.write(data)
 
             urls.append(f"{url_prefix}{filename}")
 
