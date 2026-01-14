@@ -42,7 +42,6 @@ class BlogService:
         meta, meta_end = self.__parse_meta(text)
 
         if not self.__validate_meta(meta):
-            print("Invalid meta!", meta)
             return None, None
 
         return meta, text[meta_end + 1 :]
@@ -63,11 +62,10 @@ class BlogService:
 
         return True
 
-    def get_posts(self) -> list[dict]:
-        posts_names = os.listdir(self.posts_path)
+    def get_posts(self, time_format: str = "%B %d, %Y") -> list[dict]:
         posts = []
 
-        for p in posts_names:
+        for p in os.listdir(self.posts_path):
             post_path = self.posts_path / p
 
             with open(post_path, "r") as f:
@@ -76,17 +74,22 @@ class BlogService:
             if not meta:
                 continue
 
-            name = meta.get("name")
-            generic_name = meta.get("generic_name")
             dt = meta.get("publish_date", 0)
 
             posts.append(
                 {
-                    "publish_date": datetime.fromtimestamp(dt).strftime("%B %d, %Y"),  # type: ignore - checked with self.validate_meta
-                    "url": f"/b/{generic_name}",
-                    "name": name,
+                    "_ts": dt,
+                    "publish_date": datetime.fromtimestamp(dt).strftime(time_format),  # type: ignore
+                    "url": f"/b/{meta.get('generic_name')}",
+                    "name": meta.get("name"),
+                    "description": meta.get("description"),
                 }
             )
+
+        posts.sort(key=lambda p: p["_ts"], reverse=True)
+
+        for p in posts:
+            p.pop("_ts")
 
         return posts
 

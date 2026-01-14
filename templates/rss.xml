@@ -1,0 +1,24 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Goldic</title>
+    <link>https://goldic.xyz</link>
+    <description>Goldic's site</description>
+    <language>en-us</language>
+    <lastBuildDate>{{ last_build }}+0000</lastBuildDate>
+     <ttl>1440</ttl>
+    <atom:link href="https://goldic.xyz/rss.xml"
+               rel="self"
+               type="application/rss+xml" />
+    {% for post in posts %}
+    <item>
+      <title>{{ post.name }}</title>
+      <link>https://goldic.xyz{{ post.url }}</link>
+      <guid isPermaLink="true">https://goldic.xyz{{ post.url }}</guid>
+      <pubDate>{{ post.publish_date }}+0000</pubDate>
+      <description><![CDATA[{{ post.description }}]]></description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
