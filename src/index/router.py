@@ -37,7 +37,22 @@ async def rss(request: Request):
     posts = BlogService().get_posts(time_format="%a, %d %b %Y %H:%M:%S %z")
 
     return templates.TemplateResponse(
-        "rss.xml",
+        "xml/rss.xml",
+        {
+            "request": request,
+            "posts": posts,
+            "last_build": posts[0].get("publish_date"),
+        },
+        media_type="application/rss+xml",
+    )
+
+
+@router.get("/sitemap.xml")
+async def sitemap(request: Request):
+    posts = BlogService().get_posts(time_format="%Y-%m-%d")
+
+    return templates.TemplateResponse(
+        "xml/sitemap.xml",
         {
             "request": request,
             "posts": posts,
