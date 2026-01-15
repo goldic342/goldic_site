@@ -3,6 +3,7 @@ from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
 
 from blog.service import BlogService
+from index.utils import last_build
 
 
 router = APIRouter()
@@ -34,14 +35,15 @@ async def robots():
 
 @router.get("/rss.xml")
 async def rss(request: Request):
-    posts = BlogService().get_posts(time_format="%a, %d %b %Y %H:%M:%S %z")
+    time_format = "%a, %d %b %Y %H:%M:%S %z"
+    posts = BlogService().get_posts(time_format=time_format)
 
     return templates.TemplateResponse(
         "xml/rss.xml",
         {
             "request": request,
             "posts": posts,
-            "last_build": posts[0].get("publish_date"),
+            "last_build": last_build(posts, time_format),
         },
         media_type="application/rss+xml",
     )
@@ -49,14 +51,15 @@ async def rss(request: Request):
 
 @router.get("/sitemap.xml")
 async def sitemap(request: Request):
-    posts = BlogService().get_posts(time_format="%Y-%m-%d")
+    time_format = "%Y-%m-%d"
+    posts = BlogService().get_posts(time_format=time_format)
 
     return templates.TemplateResponse(
         "xml/sitemap.xml",
         {
             "request": request,
             "posts": posts,
-            "last_build": posts[0].get("publish_date"),
+            "last_build": last_build(posts, time_format),
         },
         media_type="application/rss+xml",
     )
