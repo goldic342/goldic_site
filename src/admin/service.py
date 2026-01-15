@@ -1,11 +1,11 @@
 import hmac
 import re
 from typing import Literal
-import urllib
 import os
 import json
 import hashlib
 from pathlib import Path
+from admin.config import admin_settings
 
 from fastapi import UploadFile
 from blog.service import BlogService
@@ -16,8 +16,6 @@ from exceptions import DetailedError
 
 
 class AdminService:
-    IMG_MIME = {"image/png", "image/jpeg", "image/webp", "image/gif"}
-    MD_MIME = {"text/markdown", "text/plain"}
 
     def hash_password(self, password: str, salt: bytes, iter: int = 100_000) -> str:
         hash = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, iter)
@@ -80,7 +78,9 @@ class AdminService:
         return self.__create_token()
 
     def __check_file(self, file: UploadFile, file_type: Literal["img", "md"]) -> bool:
-        allowed_mime = self.IMG_MIME if file_type == "img" else self.MD_MIME
+        allowed_mime = (
+            admin_settings.IMG_MIME if file_type == "img" else admin_settings.MD_MIME
+        )
 
         if (file.size or 0) > settings.MAX_FILESIZE:  # Redundant
             raise DetailedError("Too much", "I can't handle this!")
