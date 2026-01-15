@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from exceptions import DetailedError
@@ -30,6 +31,30 @@ async def auth_error_handler(request, exc):
             "detail": exc.detail,
         },
         status_code=403,
+    )
+
+
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request: Request, exc: StarletteHTTPException):
+    if exc.status_code == 404:
+        return templates.TemplateResponse(
+            "error.html",
+            {
+                "request": request,
+                "error": 404,
+                "detail": "Page not found",
+            },
+            status_code=404,
+        )
+
+    return templates.TemplateResponse(
+        "error.html",
+        {
+            "request": request,
+            "error": exc.status_code,
+            "detail": exc.detail,
+        },
+        status_code=exc.status_code,
     )
 
 
