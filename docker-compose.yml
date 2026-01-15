@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     container_name: goldic_site
     networks: [infra]
+    volumes:
+      - ./data/:/app/data/
     environment:
       ADMIN_USERNAME: ${ADMIN_USERNAME}
       ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH}
