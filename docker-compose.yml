@@ -6,9 +6,16 @@ services:
     restart: unless-stopped
     container_name: goldic_site
     networks: [infra]
+    environment:
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH}
+      ADMIN_PASSWORD_SALT: ${ADMIN_PASSWORD_SALT}
+      TOKEN_SECRET: ${TOKEN_SECRET}
+      IS_PROD: ${IS_PROD}
+
 # Expose ports for localhost deploy
 #    ports:
-#      - "127.0.0.1:3001:3001"
+#      - "127.0.0.1:8000:8000"
 
 networks:
   infra:

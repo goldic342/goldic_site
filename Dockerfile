@@ -1,24 +1,12 @@
-FROM python:3.11-slim AS builder
-
+FROM python:3.13-slim
 WORKDIR /app
 
-COPY requirements.txt . 
+COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install -r requirements.txt --no-cache-dir --upgrade
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
 COPY . /app
 
-RUN staticjinja build --outpath /app/build 
+EXPOSE 8000
 
-FROM caddy:2.10.2-alpine
-
-COPY --from=builder /app/build /usr/share/caddy
-COPY --from=builder /app/static /usr/share/caddy/static
-
-# Move index related files to root
-RUN mv /usr/share/caddy/static/images/favicon.ico /usr/share/caddy
-RUN mv /usr/share/caddy/static/data/robots.txt /usr/share/caddy
-
-COPY Caddyfile /etc/caddy/Caddyfile
-
-EXPOSE 3001
+CMD ["fastapi", "run", "src/main.py", "--port", "8000", "--proxy-headers"]

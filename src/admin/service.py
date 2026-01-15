@@ -19,7 +19,7 @@ class AdminService:
     IMG_MIME = {"image/png", "image/jpeg", "image/webp", "image/gif"}
     MD_MIME = {"text/markdown", "text/plain"}
 
-    def __hash_password(self, password: str, salt: bytes, iter: int = 100_000) -> str:
+    def hash_password(self, password: str, salt: bytes, iter: int = 100_000) -> str:
         hash = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, iter)
 
         return hash.hex()
@@ -72,7 +72,7 @@ class AdminService:
             raise DetailedError("Wrong guess!")
 
         if not hmac.compare_digest(
-            self.__hash_password(password, settings.ADMIN_PASSWORD_SALT.encode()),
+            self.hash_password(password, settings.ADMIN_PASSWORD_SALT.encode()),
             settings.ADMIN_PASSWORD_HASH,
         ):
             raise DetailedError("Wrong guess!")

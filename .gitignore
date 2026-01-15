@@ -4,6 +4,9 @@ index.html
 data/
 templates/posts/
 
+.env
+!.example.env
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -19,6 +19,19 @@ Clone the repo
 git clone git@github.com:goldic342/goldic_site.git
 ```
 
+Generate password hash and salt
+
+```bash
+python src/setup.py
+```
+
+Create `data` directory and `.env`
+
+```bash
+cp .example.env .env
+mkdir -p data
+```
+
 Build the docker image
 
 ```bash
@@ -28,7 +41,7 @@ docker build -t goldic_site .
 Run
 
 ```bash
-docker run -p 3001:3001 goldic_site
+docker run -p 8000:8000 -v ./data:/app/data goldic_site
 ```
 
 ### Docker compose
