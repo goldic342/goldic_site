@@ -18,7 +18,12 @@ async def list_p(request: Request):
 
     return templates.TemplateResponse(
         "blog.html",
-        {"request": request, "posts": posts},
+        {
+            "request": request,
+            "posts": posts,
+            "title": "Blog",
+            "description": "All posts in Goldic's blog.",
+        },
     )
 
 
@@ -58,5 +63,7 @@ async def p(post_name: str, request: Request):
             "publish_date": datetime.fromtimestamp(
                 meta.get("publish_date", 0)
             ).strftime("%B %d %Y"),
+            "og_type": "article",
+            "description": meta.get("description"),
         },
     )

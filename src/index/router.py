@@ -12,7 +12,14 @@ templates = Jinja2Templates(directory="templates")
 
 @router.get("/")
 async def root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+            "description": "Goldic - Fullstack web developer and Linux enthusiast.",
+            "title": "Goldic",
+        },
+    )
 
 
 @router.get("/favicon.ico")

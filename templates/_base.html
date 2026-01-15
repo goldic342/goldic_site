@@ -2,16 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
 
+    <meta property="og:url" content="https://goldic.xyz{{ request.path }}">
+    <meta property="og:site_name" content="Goldic">
+    <meta property="og:type" content="{{ og_type|default('website') }}">
+    <meta property="og:title" content="{{ title|escape }}">
+    <meta property="og:image" content="https://goldic.xyz/static/og.png">
+
+    <meta property="og:description" content="{{ description | truncate(200, True) | e }}">
+    <meta name="description" content="{{ description }}">
+
+    <title>{% block title %}{% endblock %}</title>
     {% block head %} {% endblock %}
+
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; style-src 'self'; img-src 'self'; object-src 'none';"
     /> 
-    <meta name="author" content="Goldic" />
-    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="alternate" type="application/rss+xml" title="Goldic" href="/rss.xml">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+    <link rel="canonical" href="https://goldic.xyz{{ request.path }}">
   </head>
   <body>
     <header>
