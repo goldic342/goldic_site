@@ -9,12 +9,15 @@ from admin.router import router as admin_router
 import os
 from pathlib import Path
 from config import settings
+from middlewares import RealIPMiddleware
 
 app = FastAPI(
     docs_url=None if settings.IS_PROD else "/docs",
     redoc_url=None if settings.IS_PROD else "/redoc",
     openapi_url=None if settings.IS_PROD else "/openapi.json",
 )
+
+app.add_middleware(RealIPMiddleware)
 
 templates = Jinja2Templates(directory="templates")
 
