@@ -1,15 +1,16 @@
-from fastapi import FastAPI, HTTPException, Request
-from starlette.exceptions import HTTPException as StarletteHTTPException
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from exceptions import DetailedError
-from index.router import router
-from blog.router import router as blog_router
-from admin.router import router as admin_router
 import os
 from pathlib import Path
+
+from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from starlette.exceptions import HTTPException as StarletteHTTPException
+
+from admin.router import router as admin_router
+from blog.router import router as blog_router
 from config import settings
-from middlewares import RealIPMiddleware
+from exceptions import DetailedError
+from index.router import router
 
 app = FastAPI(
     docs_url=None if settings.IS_PROD else "/docs",
@@ -17,7 +18,6 @@ app = FastAPI(
     openapi_url=None if settings.IS_PROD else "/openapi.json",
 )
 
-app.add_middleware(RealIPMiddleware)
 
 templates = Jinja2Templates(directory="templates")
 
