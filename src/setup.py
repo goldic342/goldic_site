@@ -1,5 +1,5 @@
 from getpass import getpass
-from random import randbytes
+from secrets import token_urlsafe
 import hashlib
 
 
@@ -14,7 +14,7 @@ if __name__ == "__main__":
     salt = input("Salt ('Enter' to auto generate): ")
 
     if not salt:
-        salt = randbytes(24).hex()
+        salt = token_urlsafe()
 
     hash = hash_password(password, salt.encode())
 
