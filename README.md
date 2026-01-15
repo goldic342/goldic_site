@@ -1,9 +1,13 @@
-# Goldic_site
+<p align="center">
+  <a href="https://goldic.xyz"><img src="images/demo.png" alt="Goldic"></a>
+</p>
+<p align="center">
+    <em>My personal lightweight website with markdown blog</em>
+</p>
+<p align="center">
+  <a href="https://wakatime.com/badge/user/4b3fa1b9-e6b6-4b55-902c-c872b9c6f6cb/project/4afac1c8-0dac-4958-b2c8-f14b780174ea"><img src="https://wakatime.com/badge/user/4b3fa1b9-e6b6-4b55-902c-c872b9c6f6cb/project/4afac1c8-0dac-4958-b2c8-f14b780174ea.svg" alt="wakatime"></a>
+</p>
 
-![photo](images/demo.png)
-
-My personal lightweight website built with StaticJinja.  
-Showcases a few projects and important links.  
 Works entirely without JavaScript.
 
 ## Setup
