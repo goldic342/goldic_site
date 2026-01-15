@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     MAX_FILESIZE: int = 10 * 1024 * 1024
     MAX_FILES: int = 5
 
+    IS_PROD: bool = True
+
     model_config = SettingsConfigDict(
         env_file=path.join(path.dirname(path.abspath(__file__)), "..", ".env")
     )

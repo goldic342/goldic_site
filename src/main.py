@@ -10,7 +10,11 @@ import os
 from pathlib import Path
 from config import settings
 
-app = FastAPI()
+app = FastAPI(
+    docs_url=None if settings.IS_PROD else "/docs",
+    redoc_url=None if settings.IS_PROD else "/redoc",
+    openapi_url=None if settings.IS_PROD else "/openapi.json",
+)
 
 templates = Jinja2Templates(directory="templates")
 
