@@ -5,6 +5,9 @@
     Personal lightweight website with markdown blog&nbsp;
 </p>
 
+# Migration
+This repository has been migrated to [codeberg](https://codeberg.org/goldic/goldic_site)_
+
 ## Features
 
 - Works entirely without JavaScript.
