@@ -6,7 +6,7 @@
 </p>
 
 # Migration
-This repository has been migrated to [codeberg](https://codeberg.org/goldic/goldic_site)_
+This repository has been migrated to [codeberg](https://codeberg.org/goldic/goldic_site)
 
 ## Features
 
